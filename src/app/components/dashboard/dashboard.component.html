@@ -1,5 +1,5 @@
 <div class="md:px-20 md:py-5 md:flex md:gap-3">
-    <div class="w-1/4 bg-white rounded-lg shadow-sm p-4 hidden md:block">
+    <div class="w-1/4 h-[80vh] bg-white rounded-lg shadow-sm p-4 hidden md:block">
         <h1 class="uppercase text-[#239b73] text-xl text-center font-bold tracking-wider">Filter</h1>
         <div class="grid justify-center w-full ">
             <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox1"
@@ -14,12 +14,12 @@
             <div id="dropdownDefaultCheckbox1" class="z-10 hidden w-48 bg-white divide-y rounded-lg shadow">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
-                    <li>
+                    <li *ngFor="let name of people">
                         <div class="flex items-center">
                             <input id="checkbox-item-1" type="checkbox" value=""
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-1" class="ms-2 text-sm font-medium text-[#6C6969]">Default
-                                checkbox</label>
+                            <label for="checkbox-item-1"
+                                class="ms-2 text-sm font-medium text-[#6C6969]">{{name.name}}</label>
                         </div>
                     </li>
                 </ul>
@@ -38,12 +38,12 @@
             <div id="dropdownDefaultCheckbox2" class="z-10 hidden w-48 bg-white divide-y rounded-lg shadow">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
-                    <li>
+                    <li *ngFor="let species of people">
                         <div class="flex items-center">
                             <input id="checkbox-item-1" type="checkbox" value=""
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-1" class="ms-2 text-sm font-medium text-[#6C6969]">Default
-                                checkbox</label>
+                            <label for="checkbox-item-1"
+                                class="ms-2 text-sm font-medium text-[#6C6969]">{{species.species}}</label>
                         </div>
                     </li>
                 </ul>
@@ -52,7 +52,7 @@
         <div class="grid justify-center w-full pt-5">
             <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox3"
                 class="relative w-48 tracking-wider  bg-gray-200 text-[#239b73] font-bold hover:bg-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex place-content-center"
-                type="button">Movie Name<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
+                type="button">Vehicle<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
@@ -62,12 +62,12 @@
             <div id="dropdownDefaultCheckbox3" class="z-10 w-48 hidden bg-white divide-y rounded-lg shadow">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
-                    <li>
+                    <li *ngFor="let vehicles of people">
                         <div class="flex items-center">
                             <input id="checkbox-item-1" type="checkbox" value=""
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-1" class="ms-2 text-sm font-medium text-[#6C6969]">Default
-                                checkbox</label>
+                            <label for="checkbox-item-1"
+                                class="ms-2 text-sm font-medium text-[#6C6969]">{{vehicles.vehicles}}</label>
                         </div>
                     </li>
                 </ul>
@@ -76,7 +76,7 @@
         <div class="grid justify-center w-full pt-5">
             <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox4"
                 class="relative w-48 tracking-wider  bg-gray-200 text-[#239b73] font-bold hover:bg-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex place-content-center"
-                type="button">Movie Name<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
+                type="button">Star Ships<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
@@ -86,12 +86,12 @@
             <div id="dropdownDefaultCheckbox4" class="z-10 w-48 hidden bg-white divide-y rounded-lg shadow">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
-                    <li>
+                    <li *ngFor="let starships of people">
                         <div class="flex items-center">
                             <input id="checkbox-item-1" type="checkbox" value=""
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-1" class="ms-2 text-sm font-medium text-[#6C6969]">Default
-                                checkbox</label>
+                            <label for="checkbox-item-1"
+                                class="ms-2 text-sm font-medium text-[#6C6969]">{{starships.starships}}</label>
                         </div>
                     </li>
                 </ul>
@@ -110,13 +110,12 @@
             <div id="dropdownDefaultCheckbox5" class="z-10 w-48 hidden bg-white divide-y rounded-lg shadow">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
-                    <li>
+                    <li *ngFor="let birth of people">
                         <div class="flex items-center">
                             <input id="checkbox-item-1" type="checkbox" value=""
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
                             <label for="checkbox-item-1"
-                                class="ms-2 text-sm tracking-wider font-medium text-[#6C6969]">Default
-                                checkbox</label>
+                                class="ms-2 text-sm tracking-wider font-medium text-[#6C6969]">{{birth.birth_year}}</label>
                         </div>
                     </li>
                 </ul>
@@ -147,7 +146,7 @@
 
 
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <!-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
                 <thead class="text-xs text-gray-700 capitalize bg-[#F5F5F5]">
                     <tr>
@@ -166,24 +165,52 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-[#E6E6E6] border-b hover:bg-gray-100">
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            Apple MacBook Pro 17"
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            $2999
-                        </td>
+                    <tr *ngFor="let data of people; let i = index" class="bg-[#E6E6E6] border-b hover:bg-gray-100">
+                        <td class="px-6 py-4 whitespace-nowrap">{{i+1}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ data.name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Species 1</td>
+                        <td class="px-6 py-4 whitespace-nowrap">AA101</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"></mat-paginator>
+        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Select page"></mat-paginator> -->
+
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" class="mat-table">
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> SI.No </th>
+                    <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }}. </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+                </ng-container>
+
+                <!-- Species Column -->
+                <ng-container matColumnDef="species">
+                    <th mat-header-cell *matHeaderCellDef> Species </th>
+                    <td mat-cell *matCellDef="let element; let i = index" [matTooltip]="element.species">Species {{i+1}}
+                    </td>
+                </ng-container>
+
+                <!-- Code Column -->
+                <ng-container matColumnDef="code">
+                    <th mat-header-cell *matHeaderCellDef> Birth Year </th>
+                    <td mat-cell *matCellDef="let element"> {{element.birth_year}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
 
 
     </div>
