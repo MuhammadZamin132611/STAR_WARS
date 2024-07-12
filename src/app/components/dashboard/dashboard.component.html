@@ -1,5 +1,5 @@
-<div class="px-20 py-5 flex gap-3">
-    <div class="w-1/4 bg-white rounded-lg shadow-sm p-4">
+<div class="md:px-20 md:py-5 md:flex md:gap-3">
+    <div class="w-1/4 bg-white rounded-lg shadow-sm p-4 hidden md:block">
         <h1 class="uppercase text-[#239b73] text-xl text-center font-bold tracking-wider">Filter</h1>
         <div class="grid justify-center w-full ">
             <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox1"
@@ -142,7 +142,7 @@
 
 
 
-    <div class="w-3/4 bg-white rounded-lg shadow-sm py-4 px-6">
+    <div class="w-full md:w-3/4 bg-white rounded-lg shadow-sm py-4 px-3 md:px-6">
         <h1 class="uppercase text-[#239b73] text-lg font-semibold tracking-wider">Search Results</h1>
 
 
@@ -183,6 +183,8 @@
                 </tbody>
             </table>
         </div>
+        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"></mat-paginator>
+
 
     </div>
 </div>
