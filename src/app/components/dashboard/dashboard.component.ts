@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { StarWarsService } from 'src/app/service/star-wars.service';
 
 @Component({
@@ -12,10 +13,13 @@ export class DashboardComponent implements OnInit {
   vehiclesList: any[] = [];
   starshipsList: any[] = [];
 
-  constructor(private swapiService: StarWarsService) { }
+  constructor(private swapiService: StarWarsService,
+    private ngxService:NgxUiLoaderService
+  ) { }
 
   ngOnInit(): void {
     this.getPeople();
+    this.ngxService.start();
   }
 
   p: any
@@ -33,6 +37,7 @@ export class DashboardComponent implements OnInit {
         // } else {
         //   console.error('Unexpected data structure:', data);
         // }
+        this.ngxService.stop();
         this.p = 1;
         if (Array.isArray(data.results)) {
           this.people = data.results.map(this.processCharacterData);

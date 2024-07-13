@@ -15,6 +15,20 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxUiLoaderConfig, SPINNER, PB_DIRECTION, NgxUiLoaderModule } from 'ngx-ui-loader';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  text: "Loading...",
+  textColor: "white",
+  textPosition: "center-center",
+  pbColor: "white",
+  bgsColor: "white",
+  fgsColor: "white",
+  fgsType: SPINNER.ballSpinClockwise,
+  fgsSize: 100,
+  pbDirection: PB_DIRECTION.leftToRight,
+  pbThickness: 5,
+};
 
 
 @NgModule({
@@ -34,7 +48,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatTooltipModule,
     MatButtonModule,
     MatIconModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
   ],
   providers: [],
   bootstrap: [AppComponent]
