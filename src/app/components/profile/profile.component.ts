@@ -10,7 +10,7 @@ import { StarWarsService } from 'src/app/service/star-wars.service';
 export class ProfileComponent implements OnInit {
   personId: number = 0;
   personDetails: any; // Adjust the type as per your API response structure
-
+  planetNumber!: number;
   constructor(private route: ActivatedRoute, private swapiService: StarWarsService) { }
 
   ngOnInit(): void {
@@ -28,6 +28,9 @@ export class ProfileComponent implements OnInit {
       next:(data: any) => {
         this.personDetails = data;
         console.log('Person details:', this.personDetails);
+
+        const urlParts = data.homeworld.split('/');
+        this.planetNumber = urlParts[urlParts.length - 2];
       },error:(error: any) => {
         console.error('Error fetching person details:', error);
       }

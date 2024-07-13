@@ -100,8 +100,7 @@ export class DashboardComponent implements OnInit {
   getPeopleDetail(personId: number) {
     this.swapiService.getPersonId(personId).subscribe({
       next:(data: any) => {
-        // console.log('Person details:', data);
-        // You can assign data to a variable to display in template or perform other actions
+        console.log('Person details:', data);
       },
       error:(error: any) => {
         console.error('Error fetching person details:', error);

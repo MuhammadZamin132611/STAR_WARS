@@ -1,1 +1,61 @@
-<p>profile works!</p>
+<div class="md:px-20 md:py-5 md:flex md:gap-3">
+    <div class="w-1/4 h-[80vh] bg-white rounded-lg shadow-sm p-4  md:block">
+        <div class="bg-gray-300 rounded-full w-1/2 grid justify-center place-items-center">
+            <div class="   ">
+                <mat-icon style="font-size: 6rem; width: 100%; height: 100%;">language</mat-icon>
+            </div>
+        </div>
+        <div class="text-gray-600 text-base font-semibold">Name: {{personDetails?.name}}</div>
+        <div class="text-gray-600 text-sm font-medium">Born: {{personDetails?.birth_year}}</div>
+        <div class="text-gray-600 text-sm font-medium">Gender: {{personDetails?.gender}}</div>
+        <div class="text-gray-600 text-sm font-medium">Height: {{personDetails?.height}}cm</div>
+        <div class="text-gray-600 text-sm font-medium">Weight: {{personDetails?.mass}}kg</div>
+        <div class="text-gray-600 text-sm font-medium">Created at:
+            {{personDetails?.created | date:'dd/MM/yyyy hh:mm a'}}
+        </div>
+        <div class="text-gray-600 text-sm font-medium">Edited at:
+            {{personDetails?.edited | date:'dd/MM/yyyy hh:mm a'}}
+        </div>
+        <div class="text-gray-600 text-sm font-medium">Hair color: {{personDetails?.hair_color}}</div>
+        <div class="text-gray-600 text-sm font-medium">Eye color: {{personDetails?.eye_color}}</div>
+        <div class="text-gray-600 text-sm font-medium">Skin color: {{personDetails?.skin_color}}</div>
+        <div *ngIf="personDetails?.homeworld?.length > 0">
+            <div class="text-gray-600 text-base font-semibold">Panet Name: <span class="font-medium"> Panet
+                    {{planetNumber}}</span></div>
+        </div>
+        <div *ngIf="personDetails?.species?.length > 0">
+            <div class="text-gray-600 text-base font-semibold">Speices:</div>
+            <ul>
+                <li *ngFor="let speciesUrl of personDetails?.species">
+                    <span>{{ (speciesUrl) }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="w-3/4  bg-white rounded-lg shadow-sm p-10  md:block">
+        <div *ngIf="personDetails?.films?.length > 0">
+            <div class="uppercase text-[#239b73] text-xl font-bold tracking-wider pb-3">Film</div>
+            <ul class="bg-[#EBF0F0] p-4 rounded-lg shadow-md grid gap-1">
+                <li class="text-[#686767] italic" *ngFor="let film of personDetails?.films; let i = index ">
+                    Movie Details {{ i+1 }}
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="personDetails?.vehicles?.length > 0">
+            <div class="uppercase text-[#239b73] text-xl font-bold tracking-wider pt-7 pb-3">Vehicles</div>
+            <ul class="bg-[#EBF0F0] p-4 rounded-lg shadow-md grid gap-1">
+                <li class="text-[#686767] italic" *ngFor="let film of personDetails?.vehicles; let i = index ">
+                    Vehicles Details {{ i+1 }}
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="personDetails?.starships?.length > 0">
+            <div class="uppercase text-[#239b73] text-xl font-bold tracking-wider pt-7 pb-3">Starships</div>
+            <ul class="bg-[#EBF0F0] p-4 rounded-lg shadow-md grid gap-1">
+                <li class="text-[#686767] italic" *ngFor="let film of personDetails?.starships; let i = index ">
+                    Ship Details {{ i+1 }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
