@@ -14,12 +14,16 @@ export class StarWarsService {
     return this.http.get(`${this.apiUrl}/people/`);
   }
 
-  getPerson(id: number): Observable<any> {
+  getPersonId(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/people/${id}/`);
   }
 
   getFilms(): Observable<any> {
     return this.http.get(`${this.apiUrl}/films/`);
+  }
+
+  getResourceByUrl(url: string): Observable<any> {
+    return this.http.get<any>(url);
   }
 
 }
