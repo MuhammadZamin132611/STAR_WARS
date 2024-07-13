@@ -18,6 +18,9 @@ export class DashboardComponent implements OnInit {
     this.getPeople();
   }
 
+  p: any
+  itemsPerPage: number = 5;
+
   getPeople = () => {
     this.swapiService.getPeople().subscribe({
       next: (data: any) => {
@@ -30,7 +33,7 @@ export class DashboardComponent implements OnInit {
         // } else {
         //   console.error('Unexpected data structure:', data);
         // }
-
+        this.p = 1;
         if (Array.isArray(data.results)) {
           this.people = data.results.map(this.processCharacterData);
           this.speciesList = data.results

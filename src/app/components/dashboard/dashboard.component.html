@@ -1,4 +1,4 @@
-<div class="md:px-20 md:py-5 md:flex md:gap-3">
+<div class="md:px-20 md:py-4 md:flex md:gap-3">
     <div class="w-1/4 h-[80vh] bg-white rounded-lg shadow-sm p-4 hidden md:block">
         <h1 class="uppercase text-[#239b73] text-xl text-center font-bold tracking-wider">Filter</h1>
         <div class="grid justify-center w-full ">
@@ -165,15 +165,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let data of people; let i = index" class="bg-[#E6E6E6] border-b hover:bg-gray-100">
-                        <td class="px-6 py-4 whitespace-nowrap">{{i+1}}.</td>
-                        <td class="px-6 py-4 whitespace-nowrap  cursor-pointer" [routerLink]="['/profile', i+1]">{{ data.name }}</td>
+                    <tr *ngFor="let data of people | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index"
+                        class="bg-[#E6E6E6] border-b hover:bg-gray-100">
+                        <td class="px-6 py-4 whitespace-nowrap">{{(p - 1) * itemsPerPage + i + 1}}.</td>
+                        <td class="px-6 py-4 whitespace-nowrap  cursor-pointer" [routerLink]="['/profile', i+1]">{{
+                            data.name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap` cursor-pointer">{{data.species}}</td>
                         <td class="px-6 py-4 whitespace-nowrap  cursor-pointer">{{data.birth_year}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="py-3">
+        <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+    </div>
         <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
 
 

@@ -14,6 +14,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfileComponent } from './components/profile/profile.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatSnackBarModule,
     MatTooltipModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
