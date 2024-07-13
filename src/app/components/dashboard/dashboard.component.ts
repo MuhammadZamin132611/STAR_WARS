@@ -36,21 +36,21 @@ export class DashboardComponent implements OnInit {
           this.speciesList = data.results
             .map(this.processCharacterData.bind(this))
             .filter((character: any) => character.species && character.species !== '...');
-            console.log("speciesList",this.speciesList)
-            this.vehiclesList = data.results
+          console.log("speciesList", this.speciesList)
+          this.vehiclesList = data.results
             .map(this.processCharacterData.bind(this))
             .filter((character: any) => character.vehicles && character.vehicles !== '...');
-            console.log("vehiclesList",this.vehiclesList)
-            this.starshipsList = data.results
+          console.log("vehiclesList", this.vehiclesList)
+          this.starshipsList = data.results
             .map(this.processCharacterData.bind(this))
             .filter((character: any) => character.starships && character.starships !== '...');
-            console.log("vehiclesList",this.starshipsList)
+          console.log("vehiclesList", this.starshipsList)
         } else if (Array.isArray(data)) {
           this.people = data.map(this.processCharacterData);
           this.speciesList = data
             .map(this.processCharacterData.bind(this))
             .filter(character => character.species && character.species !== '...');
-            this.vehiclesList = data
+          this.vehiclesList = data
             .map(this.processCharacterData.bind(this))
             .filter((character: any) => character.vehicles && character.vehicles !== '...');
         } else {
@@ -89,13 +89,27 @@ export class DashboardComponent implements OnInit {
       films: this.displayValue(character.films),
       species: this.displayValue(character.species),
       vehicles: this.concatArray(character.vehicles),
-      starships: this.displayValue(character.starships)
+      starships: this.concatArray(character.starships)
     };
 
 
 
   }
 
-  
+  details: any[] = [];
+  getPeopleDetail(personId: number) {
+    this.swapiService.getPersonId(personId).subscribe({
+      next:(data: any) => {
+        // console.log('Person details:', data);
+        // You can assign data to a variable to display in template or perform other actions
+      },
+      error:(error: any) => {
+        console.error('Error fetching person details:', error);
+      }
+      
+    });
+  }
+
+
 
 }

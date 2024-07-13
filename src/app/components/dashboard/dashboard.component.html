@@ -154,7 +154,7 @@
                             SI. No
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Character Name
+                            Movie Name
                         </th>
                         <th scope="col" class="px-6 py-3">
                             species
@@ -167,9 +167,9 @@
                 <tbody>
                     <tr *ngFor="let data of people; let i = index" class="bg-[#E6E6E6] border-b hover:bg-gray-100">
                         <td class="px-6 py-4 whitespace-nowrap">{{i+1}}.</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ data.name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{data.species}}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{data.birth_year}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap  cursor-pointer" [routerLink]="['/profile', i+1]">{{ data.name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap` cursor-pointer">{{data.species}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap  cursor-pointer">{{data.birth_year}}</td>
                     </tr>
                 </tbody>
             </table>
