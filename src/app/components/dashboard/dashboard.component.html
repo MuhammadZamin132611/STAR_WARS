@@ -168,7 +168,7 @@
                     <tr *ngFor="let data of people | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index"
                         class="bg-[#E6E6E6] border-b hover:bg-gray-100">
                         <td class="px-6 py-4 whitespace-nowrap">{{(p - 1) * itemsPerPage + i + 1}}.</td>
-                        <td class="px-6 py-4 whitespace-nowrap  cursor-pointer" [routerLink]="['/profile', i+1]">{{
+                        <td class="px-6 py-4 whitespace-nowrap  cursor-pointer" [routerLink]="['/profile', (p - 1) * itemsPerPage + i + 1]">{{
                             data.name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap` cursor-pointer">{{data.species}}</td>
                         <td class="px-6 py-4 whitespace-nowrap  cursor-pointer">{{data.birth_year}}</td>

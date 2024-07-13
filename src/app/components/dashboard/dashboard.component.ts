@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { StarWarsService } from 'src/app/service/star-wars.service';
 
@@ -28,15 +28,6 @@ export class DashboardComponent implements OnInit {
   getPeople = () => {
     this.swapiService.getPeople().subscribe({
       next: (data: any) => {
-        // console.log(data); // Inspect the data structure
-        // if (Array.isArray(data.results)) {
-        //   this.people = data.results;
-        //   console.log(this.people)
-        // } else if (Array.isArray(data)) {
-        //   this.people = data;
-        // } else {
-        //   console.error('Unexpected data structure:', data);
-        // }
         this.ngxService.stop();
         this.p = 1;
         if (Array.isArray(data.results)) {
