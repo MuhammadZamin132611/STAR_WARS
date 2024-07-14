@@ -1,8 +1,8 @@
 <div class="md:px-20 md:py-4 md:flex md:gap-3">
-    <div class="w-1/4 h-[80vh] bg-white rounded-lg shadow-sm p-4 hidden md:block">
+    <div class="w-1/4 h-[80vh] bg-white rounded-lg shadow-sm p-4 overflow-auto hidden md:block">
         <h1 class="uppercase text-[#239b73] text-xl text-center font-bold tracking-wider">Filter</h1>
         <div class="grid justify-center w-full ">
-            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox1"
+            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox1" (click)="openMoviveName()"
                 class="relative w-48 tracking-wider  bg-gray-200 text-[#239b73] font-bold hover:bg-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex place-content-center"
                 type="button">Movie Name<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -11,14 +11,15 @@
                 </svg>
             </button>
             <!-- Dropdown menu -->
-            <div id="dropdownDefaultCheckbox1" class="z-10 hidden w-48 bg-white divide-y rounded-lg shadow">
+            <div class="z-10 w-48 bg-white divide-y rounded-lg shadow" *ngIf="moviedropDown">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
                     <li *ngFor="let name of people">
                         <div class="flex items-center">
-                            <input id="checkbox-item-1" type="checkbox" value=""
+                            <input id="checkbox-item-{{name.name}}" type="checkbox" [value]="name.name"
+                                (change)="onFilterChange('name', $event)"
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-1"
+                            <label for="checkbox-item-{{name.name}}"
                                 class="ms-2 text-sm font-medium text-[#6C6969]">{{name.name}}</label>
                         </div>
                     </li>
@@ -40,9 +41,10 @@
                     aria-labelledby="dropdownCheckboxButton">
                     <li *ngFor="let species of speciesList">
                         <div class="flex items-center">
-                            <input id="checkbox-item-1" type="checkbox" value=""
+                            <input id="checkbox-item-{{species.species}}" type="checkbox" [value]="species.species"
+                                (change)="onFilterChange('species', $event)"
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-1"
+                            <label for="checkbox-item-{{species.species}}"
                                 class="ms-2 text-sm font-medium text-[#6C6969]">{{species.species}}</label>
                         </div>
                     </li>
@@ -64,9 +66,10 @@
                     aria-labelledby="dropdownCheckboxButton">
                     <li *ngFor="let vehicles of vehiclesList">
                         <div class="flex items-center">
-                            <input id="checkbox-item-1" type="checkbox" value=""
+                            <input id="checkbox-item-{{vehicles.vehicles}}" type="checkbox" [value]="vehicles.vehicles"
+                                (change)="onFilterChange('vehicles', $event)"
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-1"
+                            <label for="checkbox-item-{{vehicles.vehicles}}"
                                 class="ms-2 text-sm font-medium text-[#6C6969]">{{vehicles.vehicles}}</label>
                         </div>
                     </li>
@@ -88,9 +91,10 @@
                     aria-labelledby="dropdownCheckboxButton">
                     <li *ngFor="let starships of starshipsList">
                         <div class="flex items-center">
-                            <input id="checkbox-item-1" type="checkbox" value=""
+                            <input id="checkbox-item-{{starships.starships}}" type="checkbox" [value]="starships.starships"
+                                (change)="onFilterChange('starships', $event)"
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-1"
+                            <label for="checkbox-item-{{starships.starships}}"
                                 class="ms-2 text-sm font-medium text-[#6C6969]">{{starships.starships}}</label>
                         </div>
                     </li>
@@ -98,7 +102,7 @@
             </div>
         </div>
         <div class="grid justify-center w-full pt-5">
-            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox5"
+            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox5" (click)="openBirthYear()"
                 class="relative w-48 tracking-wider  bg-gray-200 text-[#239b73] font-bold hover:bg-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex place-content-center"
                 type="button">Birth Year<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -107,68 +111,39 @@
                 </svg>
             </button>
             <!-- Dropdown menu -->
-            <div id="dropdownDefaultCheckbox5" class="z-10 w-48 hidden bg-white divide-y rounded-lg shadow">
+            <div class="z-10 w-48 bg-white divide-y rounded-lg shadow" *ngIf="birthDropDown">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
                     <li *ngFor="let birth of people">
                         <div class="flex items-center">
-                            <input id="checkbox-item-1" type="checkbox" value=""
+                            <input id="checkbox-item-{{birth.birth_year}}" type="checkbox" [value]="birth.birth_year"
+                                (change)="onFilterChange('birth_year', $event)"
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-1"
-                                class="ms-2 text-sm tracking-wider font-medium text-[#6C6969]">{{birth.birth_year}}</label>
+                            <label for="checkbox-item-{{birth.birth_year}}"
+                                class="ms-2 text-sm font-medium text-[#6C6969]">{{birth.birth_year}}</label>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="grid justify-center w-full pt-5">
-            <button
-                class="relative tracking-wider  bg-white border-2 bi text-green-700 hover:text-white hover:bg-green-600 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
-                type="button">Search</button>
-        </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="w-full md:w-3/4 bg-white rounded-lg shadow-sm py-4 px-3 md:px-6">
         <h1 class="uppercase text-[#239b73] text-lg font-semibold tracking-wider">Search Results</h1>
-
-
-
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead class="text-xs text-gray-700 capitalize bg-[#F5F5F5]">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
-                            SI. No
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Movie Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            species
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Birth Year
-                        </th>
+                        <th scope="col" class="px-6 py-3">SI. No</th>
+                        <th scope="col" class="px-6 py-3">Movie Name</th>
+                        <th scope="col" class="px-6 py-3">Species</th>
+                        <th scope="col" class="px-6 py-3">Birth Year</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let data of people | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index"
+                    <tr *ngFor="let data of filteredPeople | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index"
                         class="bg-[#E6E6E6] border-b hover:bg-gray-100">
                         <td class="px-6 py-4 whitespace-nowrap">{{(p - 1) * itemsPerPage + i + 1}}.</td>
-                        <td class="px-6 py-4 whitespace-nowrap  cursor-pointer" [routerLink]="['/profile', (p - 1) * itemsPerPage + i + 1]">{{
+                        <td class="px-6 py-4 whitespace-nowrap  cursor-pointer" [routerLink]="['/profile', data.id]">{{
                             data.name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap` cursor-pointer">{{data.species}}</td>
                         <td class="px-6 py-4 whitespace-nowrap  cursor-pointer">{{data.birth_year}}</td>
@@ -213,3 +188,4 @@
 
     </div>
 </div>
+

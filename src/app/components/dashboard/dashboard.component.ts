@@ -12,49 +12,48 @@ export class DashboardComponent implements OnInit {
   speciesList: any[] = [];
   vehiclesList: any[] = [];
   starshipsList: any[] = [];
+  filteredPeople: any[] = [];
+  filters: any = {
+    name: [],
+    species: [],
+    vehicles: [],
+    starships: [],
+    birth_year: []
+  };
+  itemsPerPage = 5;
+  p = 1;
+  moviedropDown: boolean = false;
+  birthDropDown: boolean = false;
 
   constructor(private swapiService: StarWarsService,
-    private ngxService:NgxUiLoaderService
-  ) { }
+    private ngxService: NgxUiLoaderService) { }
 
   ngOnInit(): void {
     this.getPeople();
     this.ngxService.start();
   }
+  openMoviveName() {
+    this.moviedropDown = !this.moviedropDown;
+  }
+  openBirthYear() {
+    this.birthDropDown = !this.birthDropDown;
+  }
 
-  p: any
-  itemsPerPage: number = 5;
-
-  getPeople = () => {
+  getPeople(): void {
     this.swapiService.getPeople().subscribe({
       next: (data: any) => {
         this.ngxService.stop();
-        this.p = 1;
         if (Array.isArray(data.results)) {
-          this.people = data.results.map(this.processCharacterData);
+          this.people = data.results.map((person: any) => ({
+            ...person,
+            id: person.url.split('/').filter(Boolean).pop()
+          }));
+          this.filteredPeople = this.people;
+          this.speciesList = this.people.filter(person => person.species && person.species !== '...');
+          this.vehiclesList = this.people.filter(person => person.vehicles && person.vehicles !== '...');
+          this.starshipsList = this.people.filter(person => person.starships && person.starships !== '...');
+          console.log('ngOninit', data)
 
-          this.speciesList = data.results
-            .map(this.processCharacterData.bind(this))
-            .filter((character: any) => character.species && character.species !== '...');
-
-          this.vehiclesList = data.results
-            .map(this.processCharacterData.bind(this))
-            .filter((character: any) => character.vehicles && character.vehicles !== '...');
-
-          this.starshipsList = data.results
-            .map(this.processCharacterData.bind(this))
-            .filter((character: any) => character.starships && character.starships !== '...');
-            
-        } else if (Array.isArray(data)) {
-          this.people = data.map(this.processCharacterData);
-
-          this.speciesList = data
-            .map(this.processCharacterData.bind(this))
-            .filter(character => character.species && character.species !== '...');
-            
-          this.vehiclesList = data
-            .map(this.processCharacterData.bind(this))
-            .filter((character: any) => character.vehicles && character.vehicles !== '...');
         } else {
           console.error('Unexpected data structure:', data);
         }
@@ -62,54 +61,36 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  displayValue(value: any): string {
+  processCharacterData(value: any): any {
     if (value === null || value === undefined || value === '' || (Array.isArray(value) && value.length === 0)) {
       return '...';
     }
     return value;
   }
 
-  concatArray(arr: string[]): string {
-    if (!arr || arr.length === 0) {
-      return '...';
-    }
-    return arr.join(', ');
-  }
-
-  processCharacterData = (character: any) => {
-    return {
-      ...character,
-      name: this.displayValue(character.name),
-      height: this.displayValue(character.height),
-      mass: this.displayValue(character.mass),
-      hair_color: this.displayValue(character.hair_color),
-      skin_color: this.displayValue(character.skin_color),
-      eye_color: this.displayValue(character.eye_color),
-      birth_year: this.displayValue(character.birth_year),
-      gender: this.displayValue(character.gender),
-      homeworld: this.displayValue(character.homeworld),
-      films: this.displayValue(character.films),
-      species: this.displayValue(character.species),
-      vehicles: this.concatArray(character.vehicles),
-      starships: this.concatArray(character.starships)
-    };
-
-
-
-  }
-
-  details: any[] = [];
-  getPeopleDetail(personId: number) {
-    this.swapiService.getPersonId(personId).subscribe({
-      next:(data: any) => {
-        console.log('Person details:', data);
-      },
-      error:(error: any) => {
-        console.error('Error fetching person details:', error);
+  onFilterChange(type: string, event: any): void {
+    const value = event.target.value;
+    if (event.target.checked) {
+      this.filters[type].push(value);
+    } else {
+      const index = this.filters[type].indexOf(value);
+      if (index > -1) {
+        this.filters[type].splice(index, 1);
       }
-    });
+    }
+    this.applyFilters();
   }
 
+  applyFilters(): void {
+    this.filteredPeople = this.people.filter(person => {
+      const nameMatch = !this.filters.name.length || this.filters.name.includes(person.name);
+      const speciesMatch = !this.filters.species.length || this.filters.species.includes(person.species);
+      const vehiclesMatch = !this.filters.vehicles.length || this.filters.vehicles.includes(person.vehicles);
+      const starshipsMatch = !this.filters.starships.length || this.filters.starships.includes(person.starships);
+      const birthYearMatch = !this.filters.birth_year.length || this.filters.birth_year.includes(person.birth_year);
 
-
+      return nameMatch && speciesMatch && vehiclesMatch && starshipsMatch && birthYearMatch;
+    });
+    this.p = 1;
+  }
 }
