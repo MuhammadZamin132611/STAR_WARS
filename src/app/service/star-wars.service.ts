@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +18,14 @@ export class StarWarsService {
     return this.http.get(`${this.apiUrl}/people/${id}/`);
   }
 
-  getFilms(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/films/`);
+  getFilms(filmUrls: string[]): Observable<any[]> {
+    const filmCalls = filmUrls?.map((url: string) => this.http.get(url)) ?? [];
+    return forkJoin(filmCalls);
   }
 
-  getResourceByUrl(url: string): Observable<any> {
-    return this.http.get<any>(url);
+  getResourceByUrl(urls: string[]): Observable<any[]> {
+    const resourceCalls = urls?.map((url: string) => this.http.get(url)) ?? [];
+    return forkJoin(resourceCalls);
   }
 
 }

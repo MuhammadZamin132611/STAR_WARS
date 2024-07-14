@@ -52,14 +52,50 @@ export class DashboardComponent implements OnInit {
           this.speciesList = this.people.filter(person => person.species && person.species !== '...');
           this.vehiclesList = this.people.filter(person => person.vehicles && person.vehicles !== '...');
           this.starshipsList = this.people.filter(person => person.starships && person.starships !== '...');
-          console.log('ngOninit', data)
+          
 
         } else {
           console.error('Unexpected data structure:', data);
         }
+
+        this.people.forEach((person) => {
+          if (person.species) {
+            this.swapiService.getResourceByUrl(person.species).subscribe((species) => {
+              person.species = species.map((species: any) => species.name);
+              this.newNextedSpecies.push(...person.species);
+              console.log(this.newNextedSpecies)
+            });
+          }
+        });
+
+        this.people.forEach((person) => {
+          if (person.vehicles) {
+            this.swapiService.getResourceByUrl(person.vehicles).subscribe((vehicles) => {
+              person.vehicles = vehicles.map((vehicles: any) => vehicles.name);
+              this.newNextedVehicles.push(...person.vehicles);
+              console.log(this.newNextedVehicles)
+            });
+          }
+        });
+
+        this.people.forEach((person) => {
+          if (person.starships.length > 0) {
+            this.swapiService.getResourceByUrl(person.starships).subscribe((starships: any[]) => {
+              person.starships = starships.map((starship: any) => starship.name);
+              const validStarships = person.starships.filter((starship: string) => starship.trim() !== '');
+              this.newNextedStarships.push(...validStarships);
+            }, error => {
+              console.error('Error fetching starships for', person.name, ':', error);
+            });
+          }
+        });
       }
     });
   }
+
+  newNextedSpecies:any[]=[]
+  newNextedVehicles:any[]=[]
+  newNextedStarships:any[]=[]
 
   processCharacterData(value: any): any {
     if (value === null || value === undefined || value === '' || (Array.isArray(value) && value.length === 0)) {

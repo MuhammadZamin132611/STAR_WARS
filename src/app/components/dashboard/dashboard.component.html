@@ -37,13 +37,13 @@
             <div id="dropdownDefaultCheckbox2" class="z-10 hidden w-48 bg-white divide-y rounded-lg shadow">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
-                    <li *ngFor="let species of speciesList">
+                    <li *ngFor="let species of newNextedSpecies">
                         <div class="flex items-center">
-                            <input id="checkbox-item-{{species.species}}" type="checkbox" [value]="species.species"
+                            <input id="checkbox-item-{{species}}" type="checkbox" [value]="species"
                                 (change)="onFilterChange('species', $event)"
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-{{species.species}}"
-                                class="ms-2 text-sm font-medium text-[#6C6969]">{{species.species}}</label>
+                            <label for="checkbox-item-{{species}}"
+                                class="ms-2 text-sm font-medium text-[#6C6969]">{{species}}</label>
                         </div>
                     </li>
                 </ul>
@@ -62,13 +62,13 @@
             <div id="dropdownDefaultCheckbox3" class="z-10 w-48 hidden bg-white divide-y rounded-lg shadow">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
-                    <li *ngFor="let vehicles of vehiclesList">
+                    <li *ngFor="let vehicles of newNextedVehicles">
                         <div class="flex items-center">
-                            <input id="checkbox-item-{{vehicles.vehicles}}" type="checkbox" [value]="vehicles.vehicles"
+                            <input id="checkbox-item-{{vehicles}}" type="checkbox" [value]="vehicles"
                                 (change)="onFilterChange('vehicles', $event)"
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-{{vehicles.vehicles}}"
-                                class="ms-2 text-sm font-medium text-[#6C6969]">{{vehicles.vehicles}}</label>
+                            <label for="checkbox-item-{{vehicles}}"
+                                class="ms-2 text-sm font-medium text-[#6C6969]">{{vehicles}}</label>
                         </div>
                     </li>
                 </ul>
@@ -87,13 +87,13 @@
             <div id="dropdownDefaultCheckbox4" class="z-10 w-48 hidden bg-white divide-y rounded-lg shadow">
                 <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownCheckboxButton">
-                    <li *ngFor="let starships of starshipsList">
+                    <li *ngFor="let starships of newNextedStarships">
                         <div class="flex items-center">
-                            <input id="checkbox-item-{{starships.starships}}" type="checkbox" [value]="starships.starships"
+                            <input id="checkbox-item-{{starships}}" type="checkbox" [value]="starships"
                                 (change)="onFilterChange('starships', $event)"
                                 class="w-4 h-4 text-[#239b73] bg-gray-100 rounded focus:outline-none">
-                            <label for="checkbox-item-{{starships.starships}}"
-                                class="ms-2 text-sm font-medium text-[#6C6969]">{{starships.starships}}</label>
+                            <label for="checkbox-item-{{starships}}"
+                                class="ms-2 text-sm font-medium text-[#6C6969]">{{starships}}</label>
                         </div>
                     </li>
                 </ul>
