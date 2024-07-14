@@ -24,6 +24,12 @@ export class DashboardComponent implements OnInit {
   p = 1;
   moviedropDown: boolean = false;
   birthDropDown: boolean = false;
+  speciesDropDown: boolean = false;
+  vehiclesDropDown: boolean = false;
+  starShipsDropDown: boolean = false;
+  newNextedSpecies: any[] = []
+  newNextedVehicles: any[] = []
+  newNextedStarships: any[] = []
 
   constructor(private swapiService: StarWarsService,
     private ngxService: NgxUiLoaderService) { }
@@ -37,6 +43,15 @@ export class DashboardComponent implements OnInit {
   }
   openBirthYear() {
     this.birthDropDown = !this.birthDropDown;
+  }
+  openSpecies() {
+    this.speciesDropDown = !this.speciesDropDown;
+  }
+  openVehicles() {
+    this.vehiclesDropDown = !this.vehiclesDropDown;
+  }
+  openStartShips() {
+    this.starShipsDropDown = !this.starShipsDropDown;
   }
 
   getPeople(): void {
@@ -52,7 +67,7 @@ export class DashboardComponent implements OnInit {
           this.speciesList = this.people.filter(person => person.species && person.species !== '...');
           this.vehiclesList = this.people.filter(person => person.vehicles && person.vehicles !== '...');
           this.starshipsList = this.people.filter(person => person.starships && person.starships !== '...');
-          
+
 
         } else {
           console.error('Unexpected data structure:', data);
@@ -93,9 +108,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  newNextedSpecies:any[]=[]
-  newNextedVehicles:any[]=[]
-  newNextedStarships:any[]=[]
+
 
   processCharacterData(value: any): any {
     if (value === null || value === undefined || value === '' || (Array.isArray(value) && value.length === 0)) {

@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="grid justify-center w-full pt-5">
-            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox2"
+            <button (click)="openSpecies()"
                 class="relative w-48 tracking-wider  bg-gray-200 text-[#239b73] font-bold hover:bg-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex place-content-center"
                 type="button">Spices<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -34,9 +34,8 @@
                 </svg>
             </button>
             <!-- Dropdown menu -->
-            <div id="dropdownDefaultCheckbox2" class="z-10 hidden w-48 bg-white divide-y rounded-lg shadow">
-                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
-                    aria-labelledby="dropdownCheckboxButton">
+            <div class="z-10 w-48 bg-white divide-y rounded-lg shadow" *ngIf="speciesDropDown">
+                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200">
                     <li *ngFor="let species of newNextedSpecies">
                         <div class="flex items-center">
                             <input id="checkbox-item-{{species}}" type="checkbox" [value]="species"
@@ -50,7 +49,7 @@
             </div>
         </div>
         <div class="grid justify-center w-full pt-5">
-            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox3"
+            <button (click)="openVehicles()"
                 class="relative w-48 tracking-wider  bg-gray-200 text-[#239b73] font-bold hover:bg-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex place-content-center"
                 type="button">Vehicle<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -59,9 +58,8 @@
                 </svg>
             </button>
             <!-- Dropdown menu -->
-            <div id="dropdownDefaultCheckbox3" class="z-10 w-48 hidden bg-white divide-y rounded-lg shadow">
-                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
-                    aria-labelledby="dropdownCheckboxButton">
+            <div class="z-10 w-48 bg-white divide-y rounded-lg shadow" *ngIf="vehiclesDropDown">
+                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200">
                     <li *ngFor="let vehicles of newNextedVehicles">
                         <div class="flex items-center">
                             <input id="checkbox-item-{{vehicles}}" type="checkbox" [value]="vehicles"
@@ -75,7 +73,7 @@
             </div>
         </div>
         <div class="grid justify-center w-full pt-5">
-            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox4"
+            <button (click)="openStartShips()"
                 class="relative w-48 tracking-wider  bg-gray-200 text-[#239b73] font-bold hover:bg-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex place-content-center"
                 type="button">Star Ships<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -84,9 +82,8 @@
                 </svg>
             </button>
             <!-- Dropdown menu -->
-            <div id="dropdownDefaultCheckbox4" class="z-10 w-48 hidden bg-white divide-y rounded-lg shadow">
-                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
-                    aria-labelledby="dropdownCheckboxButton">
+            <div class="z-10 w-48 bg-white divide-y rounded-lg shadow" *ngIf="starShipsDropDown">
+                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200">
                     <li *ngFor="let starships of newNextedStarships">
                         <div class="flex items-center">
                             <input id="checkbox-item-{{starships}}" type="checkbox" [value]="starships"
