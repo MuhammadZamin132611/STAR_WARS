@@ -32,23 +32,26 @@ export class DashboardComponent implements OnInit {
         this.p = 1;
         if (Array.isArray(data.results)) {
           this.people = data.results.map(this.processCharacterData);
+
           this.speciesList = data.results
             .map(this.processCharacterData.bind(this))
             .filter((character: any) => character.species && character.species !== '...');
-          console.log("speciesList", this.speciesList)
+
           this.vehiclesList = data.results
             .map(this.processCharacterData.bind(this))
             .filter((character: any) => character.vehicles && character.vehicles !== '...');
-          console.log("vehiclesList", this.vehiclesList)
+
           this.starshipsList = data.results
             .map(this.processCharacterData.bind(this))
             .filter((character: any) => character.starships && character.starships !== '...');
-          console.log("vehiclesList", this.starshipsList)
+            
         } else if (Array.isArray(data)) {
           this.people = data.map(this.processCharacterData);
+
           this.speciesList = data
             .map(this.processCharacterData.bind(this))
             .filter(character => character.species && character.species !== '...');
+            
           this.vehiclesList = data
             .map(this.processCharacterData.bind(this))
             .filter((character: any) => character.vehicles && character.vehicles !== '...');
@@ -104,7 +107,6 @@ export class DashboardComponent implements OnInit {
       error:(error: any) => {
         console.error('Error fetching person details:', error);
       }
-      
     });
   }
 
