@@ -1,8 +1,8 @@
 <div class="md:px-20 md:py-4 md:flex md:gap-3">
-    <div class="w-1/4 h-[80vh] bg-white rounded-lg shadow-sm p-4 overflow-auto hidden md:block">
+    <div class="w-1/4 h-[80vh] bg-white rounded-lg shadow-sm p-4 overflow-auto no-scrollbar hidden md:block">
         <h1 class="uppercase text-[#239b73] text-xl text-center font-bold tracking-wider">Filter</h1>
         <div class="grid justify-center w-full ">
-            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox1" (click)="openMoviveName()"
+            <button (click)="openMoviveName()"
                 class="relative w-48 tracking-wider  bg-gray-200 text-[#239b73] font-bold hover:bg-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex place-content-center"
                 type="button">Movie Name<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -10,10 +10,8 @@
                         d="m1 1 4 4 4-4" />
                 </svg>
             </button>
-            <!-- Dropdown menu -->
             <div class="z-10 w-48 bg-white divide-y rounded-lg shadow" *ngIf="moviedropDown">
-                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
-                    aria-labelledby="dropdownCheckboxButton">
+                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" >
                     <li *ngFor="let name of people">
                         <div class="flex items-center">
                             <input id="checkbox-item-{{name.name}}" type="checkbox" [value]="name.name"
@@ -102,7 +100,7 @@
             </div>
         </div>
         <div class="grid justify-center w-full pt-5">
-            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox5" (click)="openBirthYear()"
+            <button (click)="openBirthYear()"
                 class="relative w-48 tracking-wider  bg-gray-200 text-[#239b73] font-bold hover:bg-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex place-content-center"
                 type="button">Birth Year<svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -110,10 +108,8 @@
                         d="m1 1 4 4 4-4" />
                 </svg>
             </button>
-            <!-- Dropdown menu -->
             <div class="z-10 w-48 bg-white divide-y rounded-lg shadow" *ngIf="birthDropDown">
-                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
-                    aria-labelledby="dropdownCheckboxButton">
+                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" >
                     <li *ngFor="let birth of people">
                         <div class="flex items-center">
                             <input id="checkbox-item-{{birth.birth_year}}" type="checkbox" [value]="birth.birth_year"
